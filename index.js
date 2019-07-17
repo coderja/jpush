@@ -48,7 +48,7 @@ app.post('/jpush', function(req,res){
             .then(function(result) {
                 console.log(result)
             }).catch(function(err) {
-                console.log(err)
+                console.log(err) 
             });
             res.send(result)
         } else {
