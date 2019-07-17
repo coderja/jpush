@@ -24,19 +24,16 @@ app.use(cors({
     credentials:true              //访问时请带cookie
 }));
 
-app.post('/jpush',function(req,res){
-
-    // let result = {title,content,transmissionContent,badge} = req.body
-    
-
+app.post('/jpush', function(req,res){
+    // let result = {title, content, transmissionContent, badge} = req.body
     /**---原生ajax请求----**/
     var post = ''; 
     req.on('data',(chunk)=>{
-        post+=chunk
+        post += chunk
     })
-    req.on('end',()=>{
+    req.on('end',() => {
         post = qs.parse(post)
-        let result = {title,content,transmissionContent,badge} = post
+        let result = {title, content, transmissionContent, badge} = post
     /**---原生ajax请求----**/
         if(title || content || transmissionContent || badge){
             var JPush = require("jpush-async").JPushAsync
@@ -56,7 +53,6 @@ app.post('/jpush',function(req,res){
             res.send(result)
         } else {
             res.send({'message':'至少填写一个参数'})
-
         }
     /**---原生ajax请求----**/
     })
